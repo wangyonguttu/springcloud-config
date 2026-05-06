@@ -7,9 +7,13 @@ spring:
           uri: lb://order-server  #需要转发的地址   lb: 使用nacos中的本地负载均衡策略  order-service服务名
           #断言规则 用于路由规则的匹配
           predicates:
-            - Path=/order/**
-        - id: stock_route  # 路由的唯一标识，路由到order
-          uri: lb://stock-server  #需要转发的地址   lb: 使用nacos中的本地负载均衡策略  order-service服务名
+            - Path=/api/order/**
+          filters:
+            - StripPrefix=1
+        - id: stock_route  # 路由的唯一标识，路由到stock
+          uri: lb://stock-server  #需要转发的地址   lb: 使用nacos中的本地负载均衡策略  stock-server服务名
           #断言规则 用于路由规则的匹配
           predicates:
-            - Path=/stock/**
+            - Path=/api/stock/**
+          filters:
+            - StripPrefix=1
