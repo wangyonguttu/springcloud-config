@@ -1,29 +1,46 @@
-routes:
-  - id: praiseItemRocketMQ
-    uri: lb://integrated-provider
-    predicates:
-      - Path=/praise/rocketmq
-  - id: auth_route
-    uri: lb://order-server
-    predicates:
-      - Path=/api/auth/**
-    filters:
-      - StripPrefix=1
-  - id: order_route
-    uri: lb://order-server
-    predicates:
-      - Path=/api/order/**
-    filters:
-      - StripPrefix=1
-  - id: stock_route
-    uri: lb://stock-server
-    predicates:
-      - Path=/api/stock/**
-    filters:
-      - StripPrefix=1
-  - id: praise_route
-    uri: lb://integrated-provider
-    predicates:
-      - Path=/api/praise/**
-    filters:
-      - StripPrefix=1
+spring:
+  cloud:
+    gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOriginPatterns: "*"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+            allowedHeaders:
+              - "*"
+            allowCredentials: true
+            maxAge: 3600
+      routes:
+        - id: praiseItemRocketMQ
+          uri: lb://integrated-provider
+          predicates:
+            - Path=/praise/rocketmq
+        - id: auth_route
+          uri: lb://order-server
+          predicates:
+            - Path=/api/auth/**
+          filters:
+            - StripPrefix=1
+        - id: order_route
+          uri: lb://order-server
+          predicates:
+            - Path=/api/order/**
+          filters:
+            - StripPrefix=1
+        - id: stock_route
+          uri: lb://stock-server
+          predicates:
+            - Path=/api/stock/**
+          filters:
+            - StripPrefix=1
+        - id: praise_route
+          uri: lb://integrated-provider
+          predicates:
+            - Path=/api/praise/**
+          filters:
+            - StripPrefix=1
