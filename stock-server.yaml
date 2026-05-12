@@ -12,13 +12,12 @@ spring:
     schema: classpath:sql/schema.sql
     initialization-mode: never
     
-#设置mybatis
-mybatis:
+#设置mybatis-plus
+mybatis-plus:
   mapper-locations: classpath:com/tulingxueyuan/stock/mapper/*Mapper.xml
-  #config-location: classpath:mybatis-config.xml
-  typeAliasesPackage: com.tulingxueyuan.stock.pojo
+  type-aliases-package: com.tulingxueyuan.stock.pojo
   configuration:
-    mapUnderscoreToCamelCase: true
+    map-underscore-to-camel-case: true
 
 # file模式的配置
 seata:
