@@ -34,6 +34,30 @@ spring:
             - Path=/api/product/**
           filters:
             - StripPrefix=1
+        - id: cart_route
+          uri: lb://order-server
+          predicates:
+            - Path=/api/cart/**
+          filters:
+            - StripPrefix=1
+        - id: address_route
+          uri: lb://order-server
+          predicates:
+            - Path=/api/address/**
+          filters:
+            - StripPrefix=1
+        - id: comment_route
+          uri: lb://order-server
+          predicates:
+            - Path=/api/comment/**
+          filters:
+            - StripPrefix=1
+        - id: user_profile_route
+          uri: lb://order-server
+          predicates:
+            - Path=/api/user/profile/**
+          filters:
+            - StripPrefix=1
         - id: stock_route
           uri: lb://stock-server
           predicates:
@@ -52,3 +76,4 @@ spring:
             - Path=/api/praise/count/**,/api/praise/list/**,/api/praise/recent/**
           filters:
             - StripPrefix=1
+
