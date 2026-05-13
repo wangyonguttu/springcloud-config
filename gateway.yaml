@@ -16,10 +16,6 @@ spring:
             allowCredentials: true
             maxAge: 3600
       routes:
-        - id: praiseItemRocketMQ
-          uri: lb://integrated-provider
-          predicates:
-            - Path=/praise/rocketmq
         - id: auth_route
           uri: lb://order-server
           predicates:
@@ -38,9 +34,15 @@ spring:
             - Path=/api/stock/**
           filters:
             - StripPrefix=1
-        - id: praise_route
-          uri: lb://integrated-provider
+        - id: praise_send_route
+          uri: lb://integrated-praise-provider
           predicates:
-            - Path=/api/praise/**
+            - Path=/api/praise/send/**
+          filters:
+            - StripPrefix=1
+        - id: praise_query_route
+          uri: lb://integrated-praise-consumer
+          predicates:
+            - Path=/api/praise/count/**,/api/praise/list/**,/api/praise/recent/**
           filters:
             - StripPrefix=1
