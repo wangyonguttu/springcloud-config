@@ -73,7 +73,7 @@ spring:
         - id: praise_query_route
           uri: lb://integrated-praise-consumer
           predicates:
-            - Path=/api/praise/count/**,/api/praise/list/**,/api/praise/recent/**
+            - Path=/api/praise/count/**,/api/praise/list/**,/api/praise/recent/**,/api/praise/top-products/**,/api/praise/statistics/**
           filters:
             - StripPrefix=1
 
