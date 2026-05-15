@@ -76,4 +76,10 @@ spring:
             - Path=/api/praise/count/**,/api/praise/list/**,/api/praise/recent/**,/api/praise/top-products/**,/api/praise/statistics/**
           filters:
             - StripPrefix=1
+        - id: ai_route
+          uri: lb://ai-service
+          predicates:
+            - Path=/api/ai/**
+          filters:
+            - StripPrefix=1
 
