@@ -79,7 +79,7 @@ spring:
         - id: ai_route
           uri: lb://ai-service
           predicates:
-            - Path=/api/v1/ai/**
+            - Path=/api/v1/ai/**,/api/v1/knowledge/**
           filters:
             - StripPrefix=1
 
