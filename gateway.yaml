@@ -15,7 +15,7 @@ spring:
               - "*"
             allowCredentials: true
             maxAge: 3600
-            routes:
+      routes:
         - id: auth_route
           uri: lb://order-server
           predicates:
@@ -91,6 +91,6 @@ spring:
         - id: ai_route
           uri: lb://ai-service
           predicates:
-            - Path=/api/v1/ai/**,/api/v1/knowledge/**
+            - Path=/api/ai/**
           filters:
             - StripPrefix=1
