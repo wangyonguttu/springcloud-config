@@ -15,7 +15,7 @@ spring:
               - "*"
             allowCredentials: true
             maxAge: 3600
-      routes:
+            routes:
         - id: auth_route
           uri: lb://order-server
           predicates:
@@ -26,6 +26,12 @@ spring:
           uri: lb://order-server
           predicates:
             - Path=/api/order/**
+          filters:
+            - StripPrefix=1
+        - id: order_test_route
+          uri: lb://order-server
+          predicates:
+            - Path=/api/test/**
           filters:
             - StripPrefix=1
         - id: product_route
@@ -64,6 +70,12 @@ spring:
             - Path=/api/stock/**
           filters:
             - StripPrefix=1
+        - id: stock_test_route
+          uri: lb://stock-server
+          predicates:
+            - Path=/api/test/**
+          filters:
+            - StripPrefix=1
         - id: praise_send_route
           uri: lb://integrated-praise-provider
           predicates:
@@ -82,4 +94,3 @@ spring:
             - Path=/api/v1/ai/**,/api/v1/knowledge/**
           filters:
             - StripPrefix=1
-
